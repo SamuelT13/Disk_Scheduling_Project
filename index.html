@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+        <title>I/O Management and Disk Scheduling Project - COMP 4006</title>
+        <!--CSS docs-->
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <!--JS scipts-->
+        <script src="js/d3.v4.min.js"></script>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/functions.js"></script>
+    </head>
+
+    <body>
+        <div id="col_left"></div>  <div id="col_right"></div>
+        <hr>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Navigator</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#left">RAID Level Options<span class="sr-only">(current)</span></a></li>
+                <li><a href="#sched_table">Disk Scheduling Algorithms</a></li>
+                 <li class="active"><a href="#transfer">Data Transfer<span class="sr-only">(current)</span></a></li>
+              </ul>
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" onkeydown="KeyPressReload(event);">
+                </div>
+                <button type="reset" class="btn btn-default">Clear</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right" id="test">
+                  <li><img id="onion" src="images/onion.png"/></li>
+                <li id="test1"><a href="documents/Manejo%20de%20Disco.pdf" target="_blank">PDF Reference</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav><hr>
+        
+        <audio id="depende1"><source src="documents/Depende.mp3" type="audio/mpeg"></audio>
+        <audio id="depende2"><source  src="documents/depende2.mp3" type="audio/mpeg"></audio>
+            
+        <h1 id="title_1"><center>RAID Disk Data Transfer Simulator</center></h1> <hr><br /><br />
+        
+        <form id="left" class="form-horizontal">
+            <fieldset>
+                <h2><center>RAID Level Options</center><hr></h2>
+            <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">RAID Level to be used <br /></label>
+                
+                <div class="col-lg-10">
+                    <select class="form-control" id="select_raid" style="font-size: 16.5px;width:95%;">
+                        <option value="-1"></option>
+                        <option value="0">RAID 0 (Nonredundant)</option>
+                        <option value="1">RAID 1 (Mirrored)</option>
+                        <option value="2">RAID 2 (Hamming code)</option>
+                        <option value="3">RAID 3 (Bit-parity)</option>
+                        <option value="4">RAID 4 (Block-parity)</option>
+                        <option value="5">RAID 5 (Distributed Block Parity)</option>
+                        <option value="6">RAID 6 (Dual-Distributed Block Parity)</option>
+                    </select>
+                    <br />
+                </div>
+        </div>
+      
+        <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Total Disk Capacity<br /></label>
+                
+                <div class="col-lg-10">
+                    
+                    <select class="form-control" id="select_cap" style="font-size: 16.5px;width:50%;">
+                        <option value="0"></option>
+                        <option value="200">200 GB</option>
+                        <option value="400">400 GB</option>
+                        <option value="600">600 GB</option>
+                        <option value="800">800 GB</option>
+                        <option value="1000">1000 GB</option>
+                    </select>
+                </div>
+            </div> 
+        <div class="form-group">
+            <label for="select" class="col-lg-2 control-label"> &nbsp; Total Drives<br /></label>
+                
+                <div class="col-lg-10">
+                    <select class="form-control" id="select_disk" style="font-size: 16.5px;width:50%;">
+                        <option value="0"></option>
+                        <option value="2">2 Disks</option>
+                        <option value="4">4 Disks</option>
+                        <option value="8">8 Disks</option>
+                    </select>
+                </div>
+            </div>
+        <div class="form-group">
+            <label for="select" class="col-lg-2 control-label"> &nbsp; Block Size<br /></label>
+                
+                <div class="col-lg-10">
+                    <select class="form-control" id="select_block" style="font-size: 16.5px;width:50%;">
+                        <option value="0"></option>
+                        <option value="1">1 GB</option>
+                        <option value="5">5 GB</option>
+                    </select>
+                </div>
+            </div>    
+                
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" id="cancel_disk_config" class="btn btn-default" style="border: 1px solid black;">Reset</button>
+                
+                <button type="button" id="button_disk_config" class="btn btn-primary" style="border: 1px solid black;">Enter</button>
+            </div>
+        </div>
+        <div id="filler"></div>
+        </fieldset>
+        </form>
+   
+        <div id="right" class="form-horizontal">
+            <fieldset>
+                <div id="disk-space">
+                    <h2><center>RAID Configuration</center></h2>
+                    <div id = "d_1" class = "disk-config"><center><p id="p_1"></p></center></div>
+                    <div id = "d_2" class = "disk-config"><center><p id="p_2"></p></center></div>
+                    <div id = "d_3" class = "disk-config"><center><p id="p_3"></p></center></div>
+                    <div id = "d_4" class = "disk-config"><center><p id="p_4"></p></center></div>
+                    <div id = "d_5" class = "disk-config"><center><p id="p_5"></p></center></div>   
+                    <div id = "d_6" class = "disk-config"><center><p id="p_6"></p></center></div>
+                    <div id = "d_7" class = "disk-config"><center><p id="p_7"></p></center></div>
+                    <div id = "d_8" class = "disk-config"><center><p id="p_8"></p></center></div>
+                </div>
+                <hr>
+                <div id="disk-info" class="panel panel-primary">
+                    <h2><center>RAID Information</center></h2>
+                    <div class="panel-body">
+                        <table style="font-size: 17px;" class="table table-striped table-hover " id = "sched-table">
+                            <tbody style="font-size: 20px;">
+                                <tr>
+                                    <td>Data Capacity:</td>
+                                    <td class = "row"><span class="s" id="data"> </span></td>
+                                </tr>
+                                <tr>
+                                    <td>Parity Capacity:</td>
+                                    <td class = "row"><span id="parity" class="s"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Capacity:</td>
+                                    <td class = "row"><span id="total" class="s"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>*Fault Tolerance:</td>
+                                    <td class = "row"><span id="toler" class="s"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Block Size:</td>
+                                    <td class = "row"><span id="block_s" class="s"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Blocks per Disk:</td>
+                                    <td class = "row"><span id="block_d" class="s"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td class = "row"><span id="cate" class="s"></span></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        *(You can afford to lose up to this amount of disks without losing data.)
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        
+        <div id="algorithms" class="form-horizontal">
+            
+            <div id="progress1" class="progress progress-striped active">
+                <div class="progress-bar" style="width: 33%"></div>
+            </div>
+            
+            <hr>
+            <table id="sched_table" style="font-size: 17px;" class="table table-striped table-hover ">
+                <thead>
+                    <tr><th colspan="2" id="dcol" style="background-color: dimgrey; font-size: 20px; border-radius: 10px;"><b><center>Disk Scheduling Algorithms</center></b></th> </tr>
+                    <tr style="margin: 50px 50px 50px 50px;"><th>Algorithm</th> <th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Random</td>
+                        <td>Used for simulation purposes</td>
+                    </tr>
+                    <tr>
+                        <td>FIFO</td>
+                        <td>First In, First Out ("Fair Algorithm")</td>
+                    </tr>
+                    <tr>
+                        <td>LIFO</td>
+                        <td>Last In, First Out</td>
+                    </tr>
+                    <tr>
+                        <td>SSTF</td>
+                        <td>Shortest-Service-Time-First (closest to disk head)</td>
+                    </tr>
+                    <tr>
+                        <td>SCAN</td>
+                        <td>Back and forth over disk (Elevator Algorithm)</td>
+                    </tr>
+                    <tr>
+                        <td>C-SCAN</td> 
+                        <td>Only goes in one direction over disk</td>
+                    </tr>
+                    <tr>
+                        <td>C-LOOK</td>             
+                        <td>Processes incoming requests automatically; only goes in one  direction (C-SCAN  variant)</td>  
+                    </tr>
+                    <tr>
+                        <td>S-LOOK</td>             
+                        <td>Processes incoming requests automatically; changes direction based on new request arrivals (Dynamic variant of SSTF)</td>  
+                    </tr>
+                </tbody>
+            </table>
+             <div class="form-group" style="float: left; width: 90%;">
+                <label for="select" class="col-lg-2 control-label">Disk Scheduling Algorithm to be used<br /></label>
+                
+                <div class="col-lg-10">
+                    <select class="form-control" id="select_algo" style="width:95%;">
+                        <option value="-1"></option>
+                        <option value="0">Random</option>
+                        <option value="1">FIFO</option>
+                        <option value="2">LIFO</option>
+                        <option value="3">SSTF</option>   
+                        <option value="4">SCAN</option>
+                        <option value="5">C-SCAN</option>
+                        <option value="6">C-LOOK</option>
+                        <option value="7">S-LOOK</option>
+                    </select>
+                 </div>
+            </div>
+            
+            <div style="width: 5% display: inline-block;">
+                    <ul class="nav nav-pills">
+                        <li id="dis" class="disabled" style="background-color: white; border-radius: 10px; color: black;"><a  id="dis_text">Disabled</a></li>
+                    </ul>
+            </div>
+            <div id="success" class="label label-success">Choice (<span id="choice"></span>) Accepted!</div>
+            
+             <div id="progress2" class="progress progress-striped active">
+                <div class="progress-bar" style="width: 66%"></div>
+            </div>
+        </div>       
+        
+        <div id="transfer" class="form-horizontal">
+            <hr>
+            <h1><center>File-Disk Data Transfer</center></h1>
+            <div id="data_transfer">
+                <div id="input_container" class="container">
+                    <button type="button" id="input_enter" class="btn btn-default">Write</button>
+
+                    <div class="form-group">
+                        <input id="word_input" class="form-control" type="text" maxlength="10" placeholder="Enter the word to transfer to the disk(s) [max. 10 chars]" onkeydown="KeyPress(event);">
+                    </div>   
+                </div>
+                <div id="disk_prev">
+                    <div id="disk_head">
+                        <h2 style="margin: 5px; background-color: #2d455e; border-radius: 2px; font-family: temp; overflow: hidden; padding: 2px;"><center>RAID Data Disks (Space Available)</center></h2>
+                    </div>
+                
+                    <div id="disk_index"><center>
+                        <div id = "d_i_1" class = "disk-index"><center><p class="p_i" id="p_i_1"></p></center></div>
+                        <div id = "d_i_2" class = "disk-index"><center><p class="p_i" id="p_i_2"></p></center></div>
+                        <div id = "d_i_3" class = "disk-index"><center><p class="p_i" id="p_i_3"></p></center></div>
+                        <div id = "d_i_4" class = "disk-index"><center><p class="p_i" id="p_i_4"></p></center></div>
+                        <div id = "d_i_5" class = "disk-index"><center><p class="p_i" id="p_i_5"></p></center></div>   
+                        <div id = "d_i_6" class = "disk-index"><center><p class="p_i" id="p_i_6"></p></center></div>
+                        <div id = "d_i_7" class = "disk-index"> <center><p class="p_i" id="p_i_7"></p></center></div>
+                        <div id = "d_i_8" class = "disk-index"><center><p id="p_i_8" class="p_i"></p></center></div></center>
+                    </div>
+                </div>
+                <div id="word_list"></div>
+            </div>
+
+            <div id="data_transfer_read">
+                <div>
+                    <div id="read1"   class="container">
+                        <button type="button" id="read_enter" class="btn btn-default">Read</button> 
+
+                        <div class="form-group">    
+                        <input id="word_read" class="form-control" type="text" maxlength="10" placeholder="Enter the word to read from the disk(s) [max. 10 chars]" onkeydown="KeyPressRead(event);">
+                        </div>   
+                    </div>
+                    <div id = "read2"></div>
+                </div>
+                  <table id="read_table" style="font-size: 18px; width: 70%; margin: auto; margin-bottom: 10px;" class="table table-striped table-hover ">
+                <thead>
+                    <tr><th colspan="3" id="rcol" style="background-color: dimgrey; font-size: 29px; border-radius: 10px;"><b><center></center></b></th> </tr>
+                    <tr style="margin: 50px 50px 50px 50px;"><th>Letter</th> <th>Block Position</th>
+                    <th>Blocks Traversed</th></tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <br /><p style="clear: both; font-size: 20px; margin: 20px; border: 1px solid black; width: 50%">*** Disk Head starts at Block 0, and in Increasing Direction ***</p>
+            </div>
+                
+            <div id="progress3" class="progress progress-striped active" style="width: 94.5%; margin-top: 40px;">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
+        </div>
+    </body>
+</html>

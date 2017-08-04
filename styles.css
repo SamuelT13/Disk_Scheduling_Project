@@ -1,0 +1,434 @@
+#algorithms{
+    padding: 5%;
+    clear: both;
+}
+
+
+body{
+    margin: auto;
+    padding: 10px 100px 50px 100px;
+}
+
+.box{
+    background-color: dimgrey;
+    margin: 10px 3px 0px 1px;
+    padding-left: 20px;
+    font-size: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.box_b{
+    background-color: dimgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: auto;
+    width: 100%;
+}
+
+.box_l{
+    color: black;
+    float: left;
+    width:10%;
+    border-radius: 5px;
+    border: 1px solid dimgrey;
+    background-color: black;
+    text-align: center;
+    font-size: 25px;
+}
+
+.box_r{
+    color: blue;
+}
+
+.box_w{
+    width: 100%;
+    padding-left: 5px;
+    font-size: 30px;
+    border-radius: 10px;
+    
+    color: white;
+    float: left;
+    margin: 5px 0px 5px 0px;
+    height: 85%;
+}
+
+#col_left{
+    height: 100%;
+    background-color: #383838;
+    border-radius: 5px;
+    width: 5%;
+    float: left;
+    border: 1px solid black;
+    display: table;
+    position:fixed;
+    margin-top: -10px;
+    margin-left: -100px;
+    overflow: hidden;
+}
+
+.col-lg-10{
+    height: 100px;
+    width: 50%;
+    
+}
+
+#col_right{
+    height: 100%;
+    background-color: #383838;
+    border-radius: 5px;
+    width: 5%;
+    float: right;
+    border: 1px solid black;
+    display: table;
+    position:fixed;
+    margin-top: -10px;
+    margin-left: 1182px;
+    overflow: hidden;
+}
+
+#d_1{
+    border: 3px solid black;
+}
+#d_2{
+    border: 3px solid red;
+}
+#d_3{
+    border: 3px solid blue;
+}
+#d_4{
+    border: 3px solid yellow;
+}
+#d_5{
+    border: 3px solid green;
+}
+#d_6{
+    border: 3px solid purple;
+}
+#d_7{
+    border: 3px solid orange;
+}
+#d_8{
+    border: 3px solid pink;
+}
+
+#d_i_1{
+    background-color: white;
+}
+#d_i_2{
+    background-color: red;
+    
+}
+#d_i_3{
+    background-color: blue;
+}
+#d_i_4{
+    background-color: yellow;
+}
+#d_i_5{
+    background-color: green;
+}
+#d_i_6{
+    background-color: purple;
+}
+#d_i_7{
+    background-color: orange;
+}
+#d_i_8{
+    background-color: pink;
+}
+
+#data_transfer{
+    background-color: #383838;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 95%;
+    overflow: hidden;
+}
+
+#data_transfer_read{
+    background-color: #383838;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 95%;
+    overflow: hidden;
+} 
+
+#dis{
+    background-color: blue;
+}
+
+#dis_change{
+    content: "t4wrs";
+    background-color: #2d455e;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.disk-config{
+    margin-left: 7px;
+    height: 125px;
+    position: relative;
+    border-radius: 100%;
+    font-size: 19px;
+    background-color: floralwhite;
+    width: 23%;
+    padding: 30px;
+    display: inline-block;
+    color: black;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+#disk_head{
+    background-color: dimgrey;
+    color: white;
+    overflow: hidden;
+}
+
+.disk-index{
+    margin-left: 7px;
+    margin-bottom: 5px;
+    height: 125px;
+    border-radius: 100%;
+    font-size: 20px;
+    border: 1px solid black;
+    background-color: floralwhite;
+    width: 40%;
+    padding: 24.9px;
+    display: block;
+    color: black;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+#disk-info{
+    margin: 5px 5px 5px 5px;
+    border: 1px solid black;
+}
+
+#disk_prev{
+    float: right;
+    width: 30%;
+    display: inline-block;
+    margin: 20px;
+    overflow: hidden;
+    border: 1px solid dimgrey;
+}
+
+#disk-space{
+    margin: 5px;
+    padding: 0px 0px 5px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #383838;
+}
+
+#filler{
+    background-color: #383838;
+    margin: -50px 0px 0px;
+    height: 220px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+#info{
+    width: auto;
+    height: 25px;
+    border-radius: 0px;
+    float: left;
+}
+
+.inp{
+    padding: 5px 20px 5px 20px;
+}
+
+#input_container{
+    width:60%;
+    display: inline-block;
+    margin: 20px;
+}
+
+#input_enter{
+    background-color: #2d455e;
+    border: 3.6px solid #2d455e;
+    float: left;
+    font-size: 25px;
+}
+
+#left{
+    background-color: #2d455e;
+    width: 49%;
+    border: 1px solid black;
+    float: left;
+    border-radius: 10px;
+    padding-top: 10px 10px 10px 10px;
+    font-size: 16px;
+    height: 845px;
+}
+
+#onion{
+    display: inline-block;
+    width: 20%;
+    height = 25%;
+    margin-top: 10px;
+    margin-left: 16px;
+    opacity: 0.7;
+    padding: 0px;
+}
+
+.p_i{
+    text-align: center;
+    color: black;
+    margin-top: 19px;
+    font-family: test;
+    font-size: 24.9px;
+    text-shadow: 2px black;
+}
+
+#progress1{
+    margin: -20px 10px 80px;
+}
+
+#progress2{
+}
+
+#rcol{
+    text-align: center;
+}
+
+#read1{
+    width:60%;
+    display: inline-block;
+    margin: 20px;
+    float: left;
+}
+
+#read2{
+    display: inline-block;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+    background-color: darkgreen;
+    border: 1px solid dimgray;
+    width: 32%;
+    height: auto;
+    font-family: test;
+    float: right;
+}
+#read_enter{
+    background-color: darkgreen;
+    border: 3.6px solid darkgreen;
+    float: left;
+    font-size: 25px;
+}
+
+#read_table td{
+    font-size: 22px;
+}
+
+#read_table th{
+    text-align: center;
+}
+
+#read_table tr{
+    border-bottom: 1px solid black;
+    font-size: 19px;
+}
+
+#right{
+    width: 49%;
+    float: right;
+    background-color: #2d455e;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 845px;
+}
+
+.row{
+    width: 60%;   
+}
+
+.s{
+    text-align: center;
+    margin-right: 50px;
+}
+
+#select_algo{
+    font-size: 16px;
+}
+#success{
+    margin: -60px 10px 10px 160px;
+    width: 15%;
+    font-size: 14px;
+    position: absolute;
+}
+
+#test{
+    width: 19%;
+    padding: 0px;
+    height: 57px;
+}
+
+#test1{
+    display: inline-block;
+    float: right;
+    margin-top: -52px;
+}
+
+#test2{
+    text-align: center;
+}
+
+#title_1{
+    width: 100%;
+    height: 100px;
+    color: white;
+    font-size: 300%;
+    padding: 30px;
+    background-color: ;
+}
+
+#transfer{
+   overflow: hidden;
+}
+
+#word1{
+    padding-left: 100px;
+}
+
+#word_input{
+    width: 80%;
+    height: 60px;
+    font-size: 20px;
+}
+
+#word_list{
+    overflow: hidden;
+    background-color: 2d455e;
+    width: 65%;
+    
+    border-radius: 10px;
+    margin: 30px 5px 30px 5px;
+    display: inline-block;
+}
+
+#word_read{
+    width: 80%;
+    height: 60px;
+    font-size: 20px;
+}
+
+#word_title{
+    background-color: #2d455e;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 30px;
+}
