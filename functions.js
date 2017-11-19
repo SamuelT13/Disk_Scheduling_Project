@@ -39,7 +39,8 @@ function main(){
     
     $("#cancel_disk_config").click(function(){
         location.reload();
-        disk_config_hide();});
+        disk_config_hide();
+    });
     
     $("#input_enter").click(function(){
         add_word();
@@ -636,7 +637,7 @@ function add_word(){
     if (words.length == 1){
         var s = "<div class=\"box\" id=\"word_title\">Word List <br /> [block number]</div>";  
         $("#word_list").append(s);
-        $("#data_transfer_read").show();
+        $("#data_transfer_read").fadeIn(400);
     }
     
     print_words();
@@ -741,7 +742,8 @@ function disk_config_show(){
     if (block == 0){alert("No Block Size entered."); return;}
     if (disks == 2 && raid == 6){alert("RAID 6 must have more than 2 disks."); return;}
     
-    $("#disk-space").fadeIn(400);
+    $("#disk-space").hide();
+    $("#disk-space").fadeIn(800);
     $("#disk-info").show();
     $("#progress1").show();
     
@@ -774,7 +776,9 @@ function disk_config_show(){
                 var sr=document.getElementById("select_algo");
                 var a1 = sr.options[sr.selectedIndex].text;
                 document.getElementById("choice").innerHTML= a1;
-                $("#success").fadeIn(400);
+                
+                $("success").fadeOut(800);
+                $("#success").fadeIn(800);
                 $("#progress2").show();
                 
                 if (p_algo != algo){
